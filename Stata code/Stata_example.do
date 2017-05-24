@@ -1,6 +1,6 @@
 **************************************** EXAMPLE WITH SIMULATED DATA ********************************************
 
-* N.B. The ado files fstd.ado, fipw.ado, fdr.ado and compprev.ado need to be placed in 
+* N.B. The ado files fstd.ado, fipw.ado, fdr.ado and compprob.ado need to be placed in 
 * current working directory or in the ado-file path (adopath)
 
 * 1. Simulate data with two measured risk factors X1 and X2 and one unmeasured factor U
@@ -19,7 +19,7 @@ tab R X2, row
     *      And both factors have the same effect on the outcome.
 
 * 3. Example use of the three estimation commands: fstd, fipw and fdr
-*    Obtain fully-adjusted prevalence p_U with each of the three estimators
+*    Obtain fully-adjusted probability p_U with each of the three estimators
 fstd Y R "X1 X2"
 di r(phat)
 
@@ -30,10 +30,10 @@ fdr Y R "X1 X2"
 di r(phat)
 
 	
-* 4. Example use of the compprev command: 
+* 4. Example use of the compprob command: 
 *   Obtain all proposed measures, standard errors and both normal-based and percentile confidence intervals with bootstrap
 *   (example for standardization - change method argument to "ipw" or "dr" for other methods)
 
-bootstrap _b, reps(100): compprev "std" Y R "X1 X2"
+bootstrap _b, reps(100): compprob "std" Y R "X1 X2"
   * preferably do more, say 1000 replications  i.e. change code to reps(1000)
 estat boot, percentile

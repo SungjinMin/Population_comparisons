@@ -1,6 +1,6 @@
 ####################################### FUNCTIONS ############################################
 
-#### Functions to obtain prevalence in Region 1 with distribution  ####    
+#### Functions to obtain probability in Region 1 with distribution  ####    
 #### of a set of factors equalized to that of Region 0 via three   #### 
 #### estimators using logistic outcome and propensity models       #### 
 
@@ -68,7 +68,7 @@ fdr<-function(data,outcome,region,fact)
 ## method: character vector indicating estimation method. Possible values are "std", "ipw" and "dr"
 ## All other arguments are as described for the functions above
 
-compprev<-function(data,ind=1:nrow(data),method,outcome,region,fact)
+compprob<-function(data,ind=1:nrow(data),method,outcome,region,fact)
 { 
   dat<-data[ind,]
   
@@ -87,12 +87,12 @@ compprev<-function(data,ind=1:nrow(data),method,outcome,region,fact)
   
   # Measures of overall impact (as in Table 1 of main text) #
   
-  # Crude prevalence difference
+  # Crude probability difference
   bUX1toXK<-pUX1toXK-q
-  # Absolute and relative changes in Region 1 prevalence due to all factors
+  # Absolute and relative changes in Region 1 probability due to all factors
   Delta<-pUX1toXK-pU
   Delta_perc<-100*(Delta/pU)
-  # Remaining prevalence difference
+  # Remaining probability difference
   bU<-pU-q 
   # % difference unexplained,
   Omega_perc<-100*bU/bUX1toXK
@@ -104,10 +104,10 @@ compprev<-function(data,ind=1:nrow(data),method,outcome,region,fact)
   MeasuresByFactor<-vector()
   for(k in 1:length(fact))
   {
-    # Absolute and relative changes in Region 1 prevalence due to risk factor Xk
+    # Absolute and relative changes in Region 1 probability due to risk factor Xk
     DeltaX<-pUX[k]-pU
     DeltaX_perc<-100*(DeltaX/pU)
-    # Prevalence difference resulting from changes in composition in risk factor Xk
+    # probability difference resulting from changes in composition in risk factor Xk
     bUX<-pUX[k]-q
     # % impact of Xk on difference 
     GammaX_perc<-100*(DeltaX/bU)

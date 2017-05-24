@@ -3,7 +3,7 @@
 * [save from here to next 'end' to file fstd.ado]
 
 
-* Stata program to obtain prevalence in Region 1 with distribution    
+* Stata program to obtain probability in Region 1 with distribution    
 * of a set of factors equalized to that of Region 0 via standardization  	 
 * using logistic outcome model
 

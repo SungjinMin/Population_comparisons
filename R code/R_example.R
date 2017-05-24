@@ -21,7 +21,7 @@ prop.table(table(R,X2),1)
 
 
 # 3. Example use of individual the three estimation functions: fstd(), fipw() and fdr()
-#    Obtain fully-adjusted prevalence p_U with each of the three estimators
+#    Obtain fully-adjusted probability p_U with each of the three estimators
 fstd(dat, "Y","R",c("X1","X2"))
 
 fipw(dat, "Y","R",c("X1","X2"))
@@ -29,14 +29,14 @@ fipw(dat, "Y","R",c("X1","X2"))
 fdr(dat, "Y","R",c("X1","X2"))
 
 
-# 4. Example use of compprev() function: 
+# 4. Example use of compprob() function: 
 #    Obtain all proposed measures, standard errors and confidence intervals with "boot" 
 #    function from "boot" package 
 
-# a) Apply non-parametric bootstrap by feeding "compprev" function and its arguments to "boot" function
+# a) Apply non-parametric bootstrap by feeding "compprob" function and its arguments to "boot" function
 #    (example for standardization - change "method" argument for other methods)
 #    Try ?boot for explanation of other arguments
-bstrap<-boot(data=dat, statistic=compprev, method="std", outcome="Y",region="R",fact=c("X1","X2"), stype="i", R=100)
+bstrap<-boot(data=dat, statistic=compprob, method="std", outcome="Y",region="R",fact=c("X1","X2"), stype="i", R=100)
 # preferably do more, say R=1000 replications
 
 # b) Recover estimates and standard errors from bstrap object
@@ -55,18 +55,18 @@ for(i in 1:nrow(RES))
 
 fact<-c("X1","X2")
 
-Measure<-c("Region 0 prevalence",
-           "Region 1 prevalence",
+Measure<-c("Region 0 probability",
+           "Region 1 probability",
            "Crude difference",
-           "Fully-adjusted Region 1 prevalence",
-           "Overall change in Region 1 prevalence",
-           "Overall % Change in Region 1 prevalence", 
+           "Fully-adjusted Region 1 probability",
+           "Overall change in Region 1 probability",
+           "Overall % Change in Region 1 probability", 
            "Remaining difference",
            "% Difference unexplained",
            "% Net impact on difference",         
-           rep(c("Xk-Unadjusted Region 1 prevalence",
-                 "Change in Region 1 prevalence due to Xk",
-                 "% Change in Region 1 prevalence due to Xk",
+           rep(c("Xk-Unadjusted Region 1 probability",
+                 "Change in Region 1 probability due to Xk",
+                 "% Change in Region 1 probability due to Xk",
                  "Resulting difference due to Xk",
                  "% Impact of Xk on difference"),length(fact)))
 

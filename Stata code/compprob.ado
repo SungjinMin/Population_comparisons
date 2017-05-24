@@ -1,7 +1,7 @@
 
-******************************* compprev command: Compare prevalence in two populations ****************
+******************************* compprob command: Compare probability in two populations ****************
 
-* [save from here to next 'end' to file compprev.ado]
+* [save from here to next 'end' to file compprob.ado]
 
 **** Stata program to derive all the proposed measures via one of     ****
 **** three estimation methods. 	                                      ****
@@ -20,7 +20,7 @@
 **	    as 0/1 binary or to be generated using i.varname
 
 
-program compprev, eclass
+program compprob, eclass
   version 12.0
   args method outcome region factors
  
@@ -51,14 +51,14 @@ program compprev, eclass
   
 ** Measures of overall impact (as in Table 1 of main text) **
   
-* Crude prevalence difference
+* Crude probability difference
   scalar bUX1toXK=pUX1toXK-q
 
-* Absolute and relative changes in Region 1 prevalence due to all factors
+* Absolute and relative changes in Region 1 probability due to all factors
   scalar Delta=pUX1toXK-pU
   scalar Delta_perc=100*(Delta/pU)
 
-* Remaining prevalence difference
+* Remaining probability difference
   scalar bU=pU-q 
 
 * % difference unexplained,
@@ -71,10 +71,10 @@ program compprev, eclass
     
   forvalues k=1/`nv'{
     scalar pUXk=pUX[1,`k']
-*Absolute and relative changes in Region 1 prevalence due to risk factor Xk
+*Absolute and relative changes in Region 1 probability due to risk factor Xk
     scalar DeltaX=pUXk-pU
     scalar DeltaX_perc=100*(DeltaX/pU)
-* Prevalence difference resulting from changes in composition in risk factor Xk
+* probability difference resulting from changes in composition in risk factor Xk
     scalar bUX=pUXk-q
 * % impact of Xk on difference 
     scalar GammaX_perc=100*(DeltaX/bU)
@@ -99,6 +99,6 @@ program compprev, eclass
  ereturn post results
 end
   
-*********************************************** end of compprev.ado****************************************
+*********************************************** end of compprob.ado****************************************
 
 

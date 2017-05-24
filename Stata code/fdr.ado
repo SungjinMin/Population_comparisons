@@ -2,7 +2,7 @@
 * [save from here to next 'end' to file fdr.ado]
 
 
-* Stata program to obtain prevalence in Region 1 with distribution    
+* Stata program to obtain probability in Region 1 with distribution    
 * of a set of factors equalized to that of Region 0 via doubly robust IPW  	 
 * using logistic outcome and propensity score models
 
